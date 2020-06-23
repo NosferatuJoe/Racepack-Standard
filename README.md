@@ -32,12 +32,11 @@ All of the 14 races are remastered/reworked versions of the iconic and classic s
 
 ## Known Bugs & Issues
 - Players becoming stuck in walls often when crouching in a small place.
-- Fix any issues or bugs that might get reported. 
 
 
 ## Future development plans
 - [ ] Change the method of the logging to be put in source-python's logs.
-- [ ] Fix any bugs that might be 
+- [ ] Fix any bugs/issues that gets reported.
 
 
 ## Bug Reports, Problems & Help
