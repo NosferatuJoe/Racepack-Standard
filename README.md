@@ -31,13 +31,16 @@ All of the 14 races are remastered/reworked versions of the iconic and classic s
 
 
 ## Known Bugs & Issues
-- When a player is respawned he might be stuck in a wall if he died while crouching or died in a small place with a low ceiling.
+- Players becoming stuck in walls often when crouching in a small place.
+- Fix any issues or bugs that might get reported. 
 
 
 ## Future development plans
 - [ ] Change the method of the logging to be put in source-python's logs.
+- [ ] Fix any bugs that might be 
 
 
 ## Bug Reports, Problems & Help
-This package is being used on my own server, and has been thoroughly used and tested. To our knowledge there should not be any bugs or issues aside from the ones mentioned here. Should you despite this happen to encounter a bug or find an issue then please report it in our [Discord](https://discord.gg/2DnAXkF), and I will do my best to find a solution and add the solution to this package.
-If you struggle with installing this package you can also ask for help either on the [Warcraft-Source Forum](http://warcraft-source.com/) or you can use ask for assistance in our help channl on [Discord](https://discord.gg/2DnAXkF)..
+This package has been tested and used on a server, there should be no bugs or issues aside from the known ones found here.
+Should you run in to a bug that isn't listed here, then please report it in our [Discord's](https://discord.gg/2DnAXkF) bug channel then I'll look in to it, find a solution and include it in an update.
+If you're having trouble installing the package, you can also get assistance either on the [Warcraft-Source Forum](http://warcraft-source.com/) or on our [Discord](https://discord.gg/2DnAXkF).
