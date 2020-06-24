@@ -23,12 +23,11 @@ All of the 14 races are remastered/reworked versions of the iconic and classic s
 ## Step-by-step installation guide
 - Go to your csgo or cstrike directory.
 - Now drag and drop the two folders named: "cfg" and "addons" in to the directory.
-- Now go in to your csgo/cfg directory and open the file named: "autoexec.cfg"
-- Add the following line: ```es_load wcs/tools/standard``` to the autoexec.cfg file and hit save, and close the file. 
-- Now go to your csgo/cfg/source-python/wcs/ directory and open the file named: ```Racepack Standard - (Version 1.0.0B).ini```
-- Copy all the text, and paste it in to your races.ini file, thereafter remove the Racepack Standard file. 
-- (Alternative) If you don't have a races.ini file already, then simply change this file's name to races.ini instead.
-- Now restart your server, or reload your WC:S mod. (Server restart recommended)
+- Now go to csgo/cfg find and open the file named: "autoexec.cfg"
+- Add the following line: ```es_load wcs/tools/standard``` to the file, save the changes, and close the file.
+- Go to csgo/cfg/source-python/wcs/ and open the file named: ```Racepack Standard - (Version 1.0.0B).ini```
+- Copy all the text, and paste it in to your races.ini file. If you don't have a races.ini already, then simply change the file's name to races.ini instead. 
+- Finally restart your server, or reload your WC:S mod. (Server restart recommended)
 
 
 ## Known Bugs & Issues
