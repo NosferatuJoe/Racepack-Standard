@@ -31,7 +31,7 @@ All of the 14 races are remastered/reworked versions of the iconic and classic s
 
 
 ## Known Bugs & Issues
-- Players becoming stuck in walls often when crouching in a small place.
+- Respawned player's might become stuck in walls when crouching in small/tight places.
 
 
 ## Future development plans
