@@ -21,7 +21,7 @@ All of the 14 races are remastered/reworked versions of the iconic and classic s
 
 
 ## Step-by-step installation guide
-- Go to your csgo or cstrike directory.
+- Go to your csgo or cstrike directory (NOTE! Some servers name this directory the server's IP instead).
 - Drag and drop the two folders named: "cfg" and "addons" in to the directory.
 - Now go to csgo/cfg find and open the file named: "autoexec.cfg"
 - Add the following line: ```es_load wcs/loaders/racepack_standard``` to the file, save the changes, and close the file.
