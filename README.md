@@ -3,8 +3,8 @@ This is an easy-to-install race package for Tha Pwned's version of the Warcraft-
 
 
 ## What does this package do? - And what does it contain?
-Installing this package on to your server will add 14 new races to your Warcraft-Source server.  
-All of the 14 races are remastered/reworked versions of the iconic and classic standard races that you might remember from the earlier days of the Warcraft-Source modification.
+Installing this package on to your server will add 11 new races to your Warcraft-Source server.  
+All of the 11 races are remastered/reworked versions of the iconic and classic standard races that you might remember from the earlier days of the Warcraft-Source modification.
 
 **List of races:**
 - Archmage Proudmoore
