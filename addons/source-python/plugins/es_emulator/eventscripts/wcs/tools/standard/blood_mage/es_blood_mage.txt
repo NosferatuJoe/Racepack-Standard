@@ -7,7 +7,7 @@ block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Spawn (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Spawn (START)
 	}
 	es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(userid)
 	es_xmath wcs_z1 + 20
@@ -33,7 +33,7 @@ block spawn
 	es_delayed 3 es_fire event_var(userid) server_var(ss_name) kill
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Spawn (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Spawn (END)
 	}
 }
 
@@ -41,7 +41,7 @@ block phoenix
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 1 (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 1 (START)
 	}
 	es wcsgroup get has_used_phoenix wcs_tmp3 event_var(userid)
 	if (server_var(wcs_tmp3) == 0) do
@@ -59,7 +59,7 @@ block phoenix
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 1 (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 1 (END)
 	}
 }
 
@@ -72,7 +72,7 @@ event player_death
 	{
 		ifx true(wcs_race_debugging) do
 		{
-			es_log [Race]: Blood Mage - [Block] Event Player_Death (START)
+			wcs_log -1 [Race]: Blood Mage - [Block] Event Player_Death (START)
 		}
 		es_tell event_var(userid) #multi #green[WCS] #lightgreenPhoenix - You will be ressurected in 3 seconds!
 		es_delayed 3 wcs_spawn event_var(userid) 1
@@ -80,7 +80,7 @@ event player_death
 		es wcsgroup set phoenix server_var(wcs_team) server_var(wcs_phoenix)
 		ifx true(wcs_race_debugging) do
 		{
-			es_log [Race]: Blood Mage - [Block] Event Player_Death (END)
+			wcs_log -1 [Race]: Blood Mage - [Block] Event Player_Death (END)
 		}
 	}
 }
@@ -89,13 +89,13 @@ event round_end
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Event Round_End (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Event Round_End (START)
 	}
 	es wcsgroup set phoenix #ct 0
 	es wcsgroup set phoenix #t 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Event Round_End (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Event Round_End (END)
 	}
 }
 
@@ -103,7 +103,7 @@ block banish
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 2 (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 2 (START)
 	}
 	if (server_var(wcs_dice2) <= 10) do
 	{
@@ -120,7 +120,7 @@ block banish
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 2 (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 2 (END)
 	}
 }
 
@@ -128,7 +128,7 @@ block siphon
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 3 (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 3 (START)
 	}
 	if (server_var(wcs_dice3) <= 8) do
 	{
@@ -168,7 +168,7 @@ block siphon
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 3 (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 3 (END)
 	}
 }
 
@@ -176,7 +176,7 @@ block flame
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 4 (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 4 (START)
 	}
 	if (server_var(wcs_dice4) <= server_var(wcs_chance)) do
 	{
@@ -206,7 +206,7 @@ block flame
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 4 (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 4 (END)
 	}
 }
 
@@ -214,7 +214,7 @@ block curing
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 5 (START)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 5 (START)
 	}
 	es playerget health wcs_tmp1 server_var(wcs_userid)
 	if (server_var(wcs_tmp1) > 175) do
@@ -233,6 +233,6 @@ block curing
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Blood Mage - [Block] Skill: 5 (END)
+		wcs_log -1 [Race]: Blood Mage - [Block] Skill: 5 (END)
 	}
 }

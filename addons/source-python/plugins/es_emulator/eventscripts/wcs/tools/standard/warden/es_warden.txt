@@ -7,12 +7,12 @@ block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Spawn (START)
+		wcs_log -1 [Race]: Warden - [Block] Spawn (START)
 	}
 	es wcsgroup set ulti_immunity event_var(userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Spawn (END)
+		wcs_log -1 [Race]: Warden - [Block] Spawn (END)
 	}
 }
 
@@ -20,12 +20,12 @@ block death
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Death (START)
+		wcs_log -1 [Race]: Warden - [Block] Death (START)
 	}
 	es wcsgroup set ulti_immunity event_var(userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Death (END)
+		wcs_log -1 [Race]: Warden - [Block] Death (END)
 	}
 }
 
@@ -33,12 +33,12 @@ block onchange
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] OnChange (START)
+		wcs_log -1 [Race]: Warden - [Block] OnChange (START)
 	}
 	es wcsgroup set ulti_immunity server_var(wcs_userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] OnChange (END)
+		wcs_log -1 [Race]: Warden - [Block] OnChange (END)
 	}
 }
 
@@ -46,7 +46,7 @@ block knives
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 1 (START)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 1 (START)
 	}
 	if (server_var(wcs_dice) <= server_var(wcs_chance)) do
 	{
@@ -64,7 +64,7 @@ block knives
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 1 (END)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 1 (END)
 	}
 }
 
@@ -72,7 +72,7 @@ block knivesdamage
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 1 (EXECUTED START)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 1 (EXECUTED START)
 	}
 	es_xrand wcs_dmg 8 19
 	es damage server_var(wcs_player) server_var(wcs_dmg) 1 event_var(attacker)
@@ -88,7 +88,7 @@ block knivesdamage
 	es_delayed .4 est_effect_08 #a 0 models/manhack/blur01.vmt server_var(vector2) 50 225 10 .5 30 10 2 255 255 255 100 13 1
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 1 (EXECUTED END)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 1 (EXECUTED END)
 	}
 }
 
@@ -96,7 +96,7 @@ block immunity
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 2 (START)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 2 (START)
 	}
 	if (server_var(wcs_dice2) <= server_var(wcs_chance)) do
 	{
@@ -108,7 +108,7 @@ block immunity
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 2 (END)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 2 (END)
 	}
 }
 
@@ -116,7 +116,7 @@ block damage
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 3 (START)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 3 (START)
 	}
 	if (server_var(wcs_dice3) <= server_var(wcs_chance)) do
 	{
@@ -145,7 +145,7 @@ block damage
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 3 (END)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 3 (END)
 	}
 }
 
@@ -153,7 +153,7 @@ block health
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 4 (START)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 4 (START)
 	}
 	es playerget health wcs_tmp1 server_var(wcs_userid)
 	if (server_var(wcs_tmp1) >= 175) do
@@ -404,6 +404,6 @@ block health
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Warden - [Block] Skill: 4 (END)
+		wcs_log -1 [Race]: Warden - [Block] Skill: 4 (END)
 	}
 }

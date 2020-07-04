@@ -7,13 +7,13 @@ block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Spawn (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Spawn (START)
 	}
 	es wcsgroup get succubuss_skull wcs_tmp3 event_var(userid)
 	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You have collected server_var(wcs_tmp3) / 5 skulls
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Spawn (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Spawn (END)
 	}
 }
 
@@ -21,13 +21,13 @@ block death
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Death (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Death (START)
 	}
 	es wcsgroup set succubuss_skull event_var(userid) 0
 	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You lost all you've collected
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Death (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Death (END)
 	}
 }
 
@@ -35,7 +35,7 @@ block damage
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 1 (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 1 (START)
 	}
 	if (server_var(wcs_dice) <= server_var(wcs_chance)) do
 	{
@@ -70,7 +70,7 @@ block damage
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 1 (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 1 (END)
 	}
 }
 
@@ -78,7 +78,7 @@ block health
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 2 (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 2 (START)
 	}
 	if (event_var(es_userdead) = 0) do
 	{
@@ -121,7 +121,7 @@ block health
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 2 (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 2 (END)
 	}
 }
 
@@ -129,14 +129,14 @@ block longjump
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 3 (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 3 (START)
 	}
 	es wcs_setfx longjump event_var(userid) + server_var(wcs_multiplier) 0
 	es_xmath wcs_multiplier * 100
 	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump lenght by server_var(wcs_multiplier)
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 3 (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 3 (END)
 	}
 }
 
@@ -144,7 +144,7 @@ block buff
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 4 (START)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 4 (START)
 	}
 	es wcsgroup get succubuss_skull wcs_tmp3 server_var(wcs_userid)
 	if (server_var(wcs_tmp3) != 0) do
@@ -185,6 +185,6 @@ block buff
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Succubus Hunter - [Block] Skill: 4 (END)
+		wcs_log -1 [Race]: Succubus Hunter - [Block] Skill: 4 (END)
 	}
 }

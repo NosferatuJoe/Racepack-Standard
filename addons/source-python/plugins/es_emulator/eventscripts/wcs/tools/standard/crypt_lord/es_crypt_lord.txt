@@ -7,13 +7,13 @@ block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Spawn (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Spawn (START)
 	}
 	es wcsgroup set spiked_carapace event_var(userid) 0
 	es wcsgroup set absorb event_var(userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Spawn (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Spawn (END)
 	}
 }
 
@@ -21,13 +21,13 @@ block death
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Death (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Death (START)
 	}
 	es wcsgroup set spiked_carapace event_var(userid) 0
 	es wcsgroup set absorb event_var(userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Death (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Death (END)
 	}
 }
 
@@ -35,13 +35,13 @@ block onchange
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] OnChange (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] OnChange (START)
 	}
 	es wcsgroup set spiked_carapace server_var(wcs_userid) 0
 	es wcsgroup set absorb server_var(wcs_userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] OnChange (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] OnChange (END)
 	}
 }
 
@@ -49,7 +49,7 @@ block shake
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 1 (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 1 (START)
 	}
 	if (server_var(wcs_dice) <= server_var(wcs_chance)) do
 	{
@@ -80,7 +80,7 @@ block shake
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 1 (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 1 (END)
 	}
 }
 
@@ -88,14 +88,14 @@ block armor
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 2 (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 2 (START)
 	}
 	es wcsgroup set spiked_carapace event_var(userid) 1
 	es wcsgroup set absorb event_var(userid) server_var(wcs_gravity)
 	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Spiked carapace - Reduces damage taken, and reflects damage upon the attacker
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 2 (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 2 (END)
 	}
 }
 
@@ -106,14 +106,14 @@ event player_attacker
 	{
 		ifx true(wcs_race_debugging) do
 		{
-			es_log [Race]: Crypt Lord - [Block] Event Player_Attacker (START)
+			wcs_log -1 [Race]: Crypt Lord - [Block] Event Player_Attacker (START)
 		}
 		es_xrand wcs_rand 3 7
 		es damage event_var(attacker) server_var(wcs_rand) 1 event_var(userid)
 		es wcs_centertell event_var(attacker) Spiked carapace reflected server_var(wcs_rand) damage
 		ifx true(wcs_race_debugging) do
 		{
-			es_log [Race]: Crypt Lord - [Block] Event Player_Attacker (END)
+			wcs_log -1 [Race]: Crypt Lord - [Block] Event Player_Attacker (END)
 		}
 	}
 }
@@ -122,7 +122,7 @@ block damage
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 3 (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 3 (START)
 	}
 	if (server_var(wcs_dice3) <= server_var(wcs_chance)) do
 	{
@@ -146,7 +146,7 @@ block damage
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 3 (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 3 (END)
 	}
 }
 
@@ -154,7 +154,7 @@ block swarm
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (START)
 	}
 	es_getplayerteam wcs_team server_var(wcs_userid)
 	if (server_var(wcs_team) = 2) do
@@ -191,7 +191,7 @@ block swarm
 	if (server_var(wcs_ultinotexec) = 1) then es wcs_cancelulti server_var(wcs_userid)
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (END)
 	}
 }
 
@@ -199,7 +199,7 @@ block ultimate_checks
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (CHECKS START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (CHECKS START)
 	}
 	es_exists ex userid server_var(wcs_targetid)
 	if (server_var(ex) = 1) do
@@ -222,7 +222,7 @@ block ultimate_checks
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (CHECKS END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (CHECKS END)
 	}
 }
 
@@ -230,7 +230,7 @@ block ultimate_final
 {
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (EXECUTED START)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (EXECUTED START)
 	}
 	es playerget health wcs_tmp1 server_var(wcs_userid)
 	if (server_var(wcs_tmp1) >= 250) do
@@ -287,6 +287,6 @@ block ultimate_final
 	es_delayed .5 es_playsound server_var(wcs_userid) ambient\creatures\flies2.wav .7
 	ifx true(wcs_race_debugging) do
 	{
-		es_log [Race]: Crypt Lord - [Block] Skill: 4 (EXECUTED END)
+		wcs_log -1 [Race]: Crypt Lord - [Block] Skill: 4 (EXECUTED END)
 	}
 }
