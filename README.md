@@ -35,7 +35,6 @@ All of the 11 races are remastered/reworked versions of the iconic and classic s
 
 
 ## Future development plans
-- [ ] Change the method of the logging to be put in source-python's logs.
 - [ ] Fix any bugs/issues that gets reported.
 
 
