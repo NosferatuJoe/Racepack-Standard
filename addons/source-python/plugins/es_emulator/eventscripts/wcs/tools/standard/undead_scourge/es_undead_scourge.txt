@@ -1,13 +1,13 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.0B    //
+//Version 1.0.1B    //
 //////////////////////
 
 block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Spawn (START)
+		wcs_log [Race]: Undead Scourge - [Block] Spawn (START)
 	}
 	if (event_var(userid) > 0) do
 	{
@@ -27,7 +27,7 @@ block spawn
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Spawn (END)
+		wcs_log [Race]: Undead Scourge - [Block] Spawn (END)
 	}
 }
 
@@ -35,7 +35,7 @@ block vampire
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 1 (START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 1 (START)
 	}
 	if (server_var(wcs_dice) <= server_var(wcs_chance)) do
 	{
@@ -74,7 +74,7 @@ block vampire
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 1 (END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 1 (END)
 	}
 }
 
@@ -82,7 +82,7 @@ block unholy
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 2 (START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 2 (START)
 	}
 	es wcs_setfx speed event_var(userid) = server_var(wcs_speed) 0
 	es_set wcs_speed_var server_var(wcs_speed)
@@ -92,7 +92,7 @@ block unholy
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Unholy Aura - Increased your speed by server_var(wcs_speed_var)%
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Userid: event_var(userid)] [Race]: Undead Scourge - [Block] Skill: 2 (END)
+		wcs_log [Userid: event_var(userid)] [Race]: Undead Scourge - [Block] Skill: 2 (END)
 	}
 }
 
@@ -100,14 +100,14 @@ block levitation
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 3 (START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 3 (START)
 	}
 	es_delayed .2 wcs_setfx gravity event_var(userid) = server_var(wcs_gravity) 0
 	es_xmath wcs_gravity * 100
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Levitation - Reduced your gravity to server_var(wcs_gravity)%
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 3 (END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 3 (END)
 	}
 }
 
@@ -115,7 +115,7 @@ block bomb
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (START)
 	}
 	if (server_var(wcs_dice4) <= server_var(wcs_chance)) do
 	{
@@ -182,7 +182,7 @@ block bomb
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (END)
 	}
 }
 
@@ -190,7 +190,7 @@ block wcs_ulti_suicide_checks
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (CHECKS START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (CHECKS START)
 	}
 	es_exists ex userid server_var(wcs_targetid)
 	if (server_var(ex) = 1) do
@@ -234,7 +234,7 @@ block wcs_ulti_suicide_checks
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (CHECKS END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (CHECKS END)
 	}
 }
 
@@ -242,7 +242,7 @@ block wcs_ulti_suicide_final
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (EXECUTED START)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (EXECUTED START)
 	}
 	es wcs_centertell server_var(wcs_targetid) You took server_var(wcs_magnitude) damage from an Explosion
 	es_xrand wcs_rand 1 3
@@ -261,6 +261,6 @@ block wcs_ulti_suicide_final
 	es damage server_var(wcs_targetid) server_var(wcs_magnitude) 1 event_var(userid)
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Skill: 4 (EXECUTED END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (EXECUTED END)
 	}
 }

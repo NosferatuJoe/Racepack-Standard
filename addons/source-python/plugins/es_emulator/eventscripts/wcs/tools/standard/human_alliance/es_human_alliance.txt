@@ -1,13 +1,13 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.0B    //
+//Version 1.0.1B    //
 //////////////////////
 
 block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Spawn (START)
+		wcs_log [Race]: Human Alliance - [Block] Spawn (START)
 	}
 	es wcs_setcooldown event_var(userid) 5
 	es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(userid)
@@ -18,7 +18,7 @@ block spawn
 	es est_effect 10 #a 0 sprites/cbbl_smoke.vmt server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1) 60 80 1.5 10 10 0 255 255 255 255 2
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Spawn (END)
+		wcs_log [Race]: Human Alliance - [Block] Spawn (END)
 	}
 }
 
@@ -26,13 +26,13 @@ block invisibility
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 1 (START)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 1 (START)
 	}
 	es_delayed .5 wcs_color event_var(userid) 255 255 255 server_var(wcs_invis) 0
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Invisibility - You've become less visible
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 1 (END)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 1 (END)
 	}
 }
 
@@ -40,13 +40,13 @@ block devotion
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 2 (START)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 2 (START)
 	}
 	es wcs_setfx health event_var(userid) + server_var(wcs_addhealth) 0
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Devotion aura - Increased your health by server_var(wcs_addhealth)
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 2 (END)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 2 (END)
 	}
 }
 
@@ -54,7 +54,7 @@ block bash
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 3 (START)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 3 (START)
 	}
 	if (server_var(wcs_dice3) <= server_var(wcs_chance)) do
 	{
@@ -83,7 +83,7 @@ block bash
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 3 (END)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 3 (END)
 	}
 }
 
@@ -91,7 +91,7 @@ block teleport
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 4 (START)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 4 (START)
 	}
 	es_xset wcs_ok 1
 	es playerget viewcoord server_var(wcs_userid) wcs_x1 wcs_y1 wcs_z1
@@ -207,6 +207,6 @@ block teleport
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Human Alliance - [Block] Skill: 4 (END)
+		wcs_log [Race]: Human Alliance - [Block] Skill: 4 (END)
 	}
 }

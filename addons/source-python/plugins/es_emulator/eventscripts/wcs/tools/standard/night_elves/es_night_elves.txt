@@ -1,13 +1,13 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.0B    //
+//Version 1.0.1B    //
 //////////////////////
 
 block spawn
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Spawn (START)
+		wcs_log [Race]: Night Elves - [Block] Spawn (START)
 	}
 	es wcsgroup set evasion event_var(userid) 0
 	es wcsgroup set evasion_chance event_var(userid) 0
@@ -18,7 +18,7 @@ block spawn
 	es_delayed .2 es est_effect 10 #a 0 sprites/lgtning.vmt server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1) 10 200 2 10 100 0 175 175 255 155 1
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Spawn (END)
+		wcs_log [Race]: Night Elves - [Block] Spawn (END)
 	}
 }
 
@@ -26,13 +26,13 @@ block death
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Death (START)
+		wcs_log [Race]: Undead Scourge - [Block] Death (START)
 	}
 	es wcsgroup set evasion event_var(userid) 0
 	es wcsgroup set evasion_chance event_var(userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] Death (END)
+		wcs_log [Race]: Undead Scourge - [Block] Death (END)
 	}
 }
 
@@ -40,13 +40,13 @@ block onchange
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] OnChange (START)
+		wcs_log [Race]: Undead Scourge - [Block] OnChange (START)
 	}
 	es wcsgroup set evasion server_var(wcs_userid) 0
 	es wcsgroup set evasion_chance server_var(wcs_userid) 0
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Undead Scourge - [Block] OnChange (END)
+		wcs_log [Race]: Undead Scourge - [Block] OnChange (END)
 	}
 }
 
@@ -54,14 +54,14 @@ block evade
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 1 (START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 1 (START)
 	}
 	es wcsgroup set evasion event_var(userid) 1
 	es wcsgroup set evasion_chance event_var(userid) server_var(wcs_chance)
 	es_tell event_var(userid) #multi #green[WCS] #lightgreenEvasion - You will be able to dodge bullets.
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 1 (END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 1 (END)
 	}
 }
 
@@ -69,7 +69,7 @@ block thorns
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 2 (START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 2 (START)
 	}
 	if (server_var(wcs_dice2) <= server_var(wcs_chance)) do
 	{
@@ -91,7 +91,7 @@ block thorns
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 2 (END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 2 (END)
 	}
 }
 
@@ -99,7 +99,7 @@ block trueshot
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 3 (START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 3 (START)
 	}
 	if (server_var(wcs_dice3) <= server_var(wcs_chance)) do
 	{
@@ -123,7 +123,7 @@ block trueshot
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 3 (END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 3 (END)
 	}
 }
 
@@ -131,7 +131,7 @@ block roots
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (START)
 	}
 	es_xset wcs_execute_ultimate 0
 	es_getplayerteam wcs_team server_var(wcs_userid)
@@ -180,7 +180,7 @@ block roots
 	if (server_var(wcs_ultinotexec) = 1) then es wcs_cancelulti server_var(wcs_userid)
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (END)
 	}
 }
 
@@ -188,7 +188,7 @@ block ultimate_checks_roots
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (CHECKS START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (CHECKS START)
 	}
 	es_exists ex userid server_var(wcs_targetid)
 	if (server_var(ex) = 1) do
@@ -235,7 +235,7 @@ block ultimate_checks_roots
 	}
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (CHECKS END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (CHECKS END)
 	}
 }
 
@@ -243,7 +243,7 @@ block ultimate_final_roots
 {
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (EXECUTED START)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (EXECUTED START)
 	}
 	es wcsgroup get is_frozen wcs_tmp4 server_var(wcs_targetid)
 	if (server_var(wcs_tmp4) == 1) do
@@ -274,6 +274,6 @@ block ultimate_final_roots
 	es est_effect 10 #a 0 sprites/laser.vmt server_var(wcs_x2) server_var(wcs_y2) server_var(wcs_z2) 75 35 1 3 3 6 0 108 0 190 0 255 2
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log -1 [Race]: Night Elves - [Block] Skill: 4 (EXECUTED END)
+		wcs_log [Race]: Night Elves - [Block] Skill: 4 (EXECUTED END)
 	}
 }
