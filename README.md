@@ -34,7 +34,7 @@ All of the 11 races are remastered/reworked versions of the iconic and classic s
 - Add the following line: ```es_load wcs/loaders/racepack_standard``` to the file, save the changes, and close the file.
 - Go to csgo/cfg/source-python/wcs/ and open the file named: ```Racepack Standard - (Version 1.0.0B).ini```
 - Copy all the text and paste it in your races.ini file and restart your the server.
-- NOTE! If you don't have a races.ini file already, then just change the name of the file from ```Racepack Standard - (Version 1.0.0B).ini``` to ```races.ini``` and then restart your server.
+- NOTE! If you don't have a races.ini file already, then just change the name of the file from ```Racepack Standard - (Version 1.0.2B).ini``` to ```races.ini``` and then restart your server.
 
 
 ## Known Bugs & Issues
