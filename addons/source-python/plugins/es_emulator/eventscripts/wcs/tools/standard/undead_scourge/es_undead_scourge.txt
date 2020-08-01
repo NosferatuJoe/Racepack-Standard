@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -92,7 +92,7 @@ block unholy
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Unholy Aura - Increased your speed by server_var(wcs_speed_var)%
 	ifx true(wcs_race_debugging) do
 	{
-		wcs_log [Userid: event_var(userid)] [Race]: Undead Scourge - [Block] Skill: 2 (END)
+		wcs_log [Race]: Undead Scourge - [Block] Skill: 2 (END)
 	}
 }
 

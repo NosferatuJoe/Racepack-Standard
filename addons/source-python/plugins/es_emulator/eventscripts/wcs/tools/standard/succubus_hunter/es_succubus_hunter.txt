@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -133,7 +133,8 @@ block longjump
 	}
 	es wcs_setfx longjump event_var(userid) + server_var(wcs_multiplier) 0
 	es_xmath wcs_multiplier * 100
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump lenght by server_var(wcs_multiplier)
+	es wcs_decimal wcs_multiplier server_var(wcs_multiplier)
+	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump length by server_var(wcs_multiplier)
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Skill: 3 (END)
@@ -149,7 +150,7 @@ block buff
 	es wcsgroup get succubuss_skull wcs_tmp3 server_var(wcs_userid)
 	if (server_var(wcs_tmp3) != 0) do
 	{
-		es_playsound server_var(wcs_userid) wcs/shamanisticrage.wav .8
+		es_playsound server_var(wcs_userid) wcs/shamanisticrage.mp3 .8
 		es wcs_setfx gravity server_var(wcs_userid) = .75 0
 		es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 server_var(wcs_userid)
 		es_createvectorstring vector2 server_var(wcs_x2) server_var(wcs_y2) server_var(wcs_z2)

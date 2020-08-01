@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -58,7 +58,7 @@ block evade
 	}
 	es wcsgroup set evasion event_var(userid) 1
 	es wcsgroup set evasion_chance event_var(userid) server_var(wcs_chance)
-	es_tell event_var(userid) #multi #green[WCS] #lightgreenEvasion - You will be able to dodge bullets.
+	es_tell event_var(userid) #multi #green[WCS] #lightgreenEvasion - You have server_var(wcs_chance)% chance to dodge bullets.
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Night Elves - [Block] Skill: 1 (END)

@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -114,12 +114,9 @@ block respawn
 			es_delayed 2 es wcs_centertell event_var(userid) Respawning in 1 seconds!
 			es_delayed 3 es wcs_centertell event_var(userid) You've been respawned! 
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(userid)
-			es_delayed 3 es_emitsound player event_var(userid) wcs/resurrect.wav 1.0 0.3
+			es_delayed 3 es_emitsound player event_var(userid) wcs/resurrect.mp3 1.0 0.3
 			es_delayed 3 wcs_spawn event_var(userid) 1
 			es_delayed 3.1 wcs_teleport event_var(userid) server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
-			es_delayed 3.6 wcs_setfx speed event_var(userid) + .25 0
-			es_delayed 3.6 wcs_setfx health event_var(userid) + 75 0
-			es_delayed 3.6 wcs_setfx gravity event_var(userid) - .1 0
 			es est_effect 10 #a 0 sprites/lgtning.vmt server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1) 130 131 3 80 20 0 255 71 36 200 10
 		}
 	}

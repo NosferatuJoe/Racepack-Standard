@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -29,7 +29,10 @@ block invisibility
 		wcs_log [Race]: Human Alliance - [Block] Skill: 1 (START)
 	}
 	es_delayed .5 wcs_color event_var(userid) 255 255 255 server_var(wcs_invis) 0
-	es_tell event_var(userid) #multi #green[WCS]#lightgreen Invisibility - You've become less visible
+ 	es_xmath wcs_invis / -2.55
+	es_xmath wcs_invis + 100
+    es wcs_decimal wcs_invis server_var(wcs_invis)
+    es_tell event_var(userid) #multi #green[WCS]#lightgreen Invisibility - You spawned with server_var(wcs_invis)% invisibility
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Human Alliance - [Block] Skill: 1 (END)
@@ -69,7 +72,7 @@ block bash
 					es_delayed 1 wcsgroup set is_frozen event_var(userid) 0
 					es wcs_setfx freeze event_var(userid) = 1 1
 					es wcs_centertell event_var(attacker) Bash immobilized event_var(es_username) for 1 second!
-					es wcs_centertell event_var(userid) Bash immobilized you for event_var(es_attackername) 1 second!
+					es wcs_centertell event_var(userid) event_var(es_attackername)'s Bash immobilized you for 1 second!
 					es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(attacker)
 					es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 event_var(userid)
 					es_xmath wcs_z1 + 20

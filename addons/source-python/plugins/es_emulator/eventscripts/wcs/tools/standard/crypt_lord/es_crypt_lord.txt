@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.1B    //
+//Version 1.0.2B    //
 //////////////////////
 
 block spawn
@@ -251,7 +251,7 @@ block ultimate_final
 	}
 	if (server_var(wcs_tmp2) < 250) do
 	{
-		es wcs_setfx armor server_var(wcs_userid) + 35 0
+		es wcs_setfx armor server_var(wcs_userid) + server_var(wcs_armor) 0
 		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Locust swarm - Granted you 35 extra armour
 	}
 	es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)

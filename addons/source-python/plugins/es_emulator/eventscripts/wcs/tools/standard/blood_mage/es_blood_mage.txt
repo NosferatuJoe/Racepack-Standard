@@ -1,8 +1,3 @@
-//////////////////////
-//Standard Race Pack//
-//Version 1.0.1B    //
-//////////////////////
-
 block spawn
 {
 	ifx true(wcs_race_debugging) do
@@ -60,42 +55,6 @@ block phoenix
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Blood Mage - [Block] Skill: 1 (END)
-	}
-}
-
-event player_death
-{
-	if (event_var(es_userteam) = 2) then es_xset wcs_team #t
-	if (event_var(es_userteam) = 3) then es_xset wcs_team #ct
-	es wcsgroup get phoenix wcs_phoenix server_var(wcs_team)
-	if (server_var(wcs_phoenix) > 0) do
-	{
-		ifx true(wcs_race_debugging) do
-		{
-			wcs_log [Race]: Blood Mage - [Block] Event Player_Death (START)
-		}
-		es_tell event_var(userid) #multi #green[WCS] #lightgreenPhoenix - You will be ressurected in 3 seconds!
-		es_delayed 3 wcs_spawn event_var(userid) 1
-		es_math wcs_phoenix - 1
-		es wcsgroup set phoenix server_var(wcs_team) server_var(wcs_phoenix)
-		ifx true(wcs_race_debugging) do
-		{
-			wcs_log [Race]: Blood Mage - [Block] Event Player_Death (END)
-		}
-	}
-}
-
-event round_end
-{
-	ifx true(wcs_race_debugging) do
-	{
-		wcs_log [Race]: Blood Mage - [Block] Event Round_End (START)
-	}
-	es wcsgroup set phoenix #ct 0
-	es wcsgroup set phoenix #t 0
-	ifx true(wcs_race_debugging) do
-	{
-		wcs_log [Race]: Blood Mage - [Block] Event Round_End (END)
 	}
 }
 
@@ -192,7 +151,7 @@ block flame
 					es wcsgroup set fire_owner event_var(userid) event_var(attacker)
 					es wcs_setfx burn event_var(userid) = 1 3
 					es_tell event_var(userid) #multi #green [WCS]: #lightgreen Flame Strike - Caused you to burst in to flames
-					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Flame Strike - Made you burst in to flames
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Flame Strike - Made event_var(es_username) burst in to flames
 					es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(userid)
 					es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 event_var(attacker)
 					es_xmath wcs_z1 + 10
