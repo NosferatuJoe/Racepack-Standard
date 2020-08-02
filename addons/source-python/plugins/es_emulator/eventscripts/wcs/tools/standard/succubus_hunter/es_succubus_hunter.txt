@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.2B    //
+//Version 1.0.3B    //
 //////////////////////
 
 block spawn
@@ -23,8 +23,17 @@ block death
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Death (START)
 	}
-	es wcsgroup set succubuss_skull event_var(userid) 0
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You lost all you've collected
+	es_xrand wcs_rand 0 2
+	ifx false(wcs_rand) do
+	{
+		es wcsgroup get succubuss_skull wcs_tmp3 event_var(userid)
+		if (server_var(wcs_tmp3) => 1) do
+		{
+			es_xmath wcs_tmp3 - 1
+			es wcsgroup set succubuss_skull event_var(userid) server_var(wcs_tmp3)
+			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You lost a skull upon death! You have server_var(wcs_tmp3) skull left!
+		}
+	}
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Death (END)
@@ -147,9 +156,12 @@ block buff
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Skill: 4 (START)
 	}
-	es wcsgroup get succubuss_skull wcs_tmp3 server_var(wcs_userid)
-	if (server_var(wcs_tmp3) != 0) do
+	es wcsgroup get succubuss_skull wcs_tmp4 server_var(wcs_userid)
+	if (server_var(wcs_tmp4) != 0) do
 	{
+		es_xmath wcs_tmp4 - 1
+		es wcsgroup set succubuss_skull server_var(wcs_userid) server_var(wcs_tmp4)
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Cost you 1 skull. You have server_var(wcs_tmp4) / 5 skulls left.
 		es_playsound server_var(wcs_userid) wcs/shamanisticrage.mp3 .8
 		es wcs_setfx gravity server_var(wcs_userid) = .75 0
 		es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 server_var(wcs_userid)

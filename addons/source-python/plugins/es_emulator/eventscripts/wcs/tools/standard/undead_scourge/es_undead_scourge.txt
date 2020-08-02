@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.2B    //
+//Version 1.0.3B    //
 //////////////////////
 
 block spawn
@@ -104,6 +104,7 @@ block levitation
 	}
 	es_delayed .2 wcs_setfx gravity event_var(userid) = server_var(wcs_gravity) 0
 	es_xmath wcs_gravity * 100
+	es wcs_decimal wcs_gravity server_var(wcs_gravity)
 	es_tell event_var(userid) #multi #green[WCS]#lightgreen Levitation - Reduced your gravity to server_var(wcs_gravity)%
 	ifx true(wcs_race_debugging) do
 	{
