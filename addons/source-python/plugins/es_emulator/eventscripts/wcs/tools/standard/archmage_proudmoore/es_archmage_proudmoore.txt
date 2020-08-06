@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.3B    //
+//Version 1.0.4B    //
 //////////////////////
 
 block spawn
@@ -91,8 +91,8 @@ block weapon
 	{
 		if (event_var(es_userdead) = 0) do
 		{
-			es_delayed .2 removeweapon event_var(userid) 1
-			es_delayed .2 removeweapon event_var(userid) 2
+			es_delayed .2 wcs_removeweapon event_var(userid) 1
+			es_delayed .2 wcs_removeweapon event_var(userid) 2
 			es_delayed .5 es_give event_var(userid) weapon_deagle
 			es_delayed .5 es_give event_var(userid) weapon_m4a1			
 			es_getgame wcs_gamecheck
