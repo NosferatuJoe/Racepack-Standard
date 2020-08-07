@@ -157,7 +157,7 @@ block wcs_ulti_chain
 			if (server_var(wcs_execute_ultimate) == 1) do
 			{
 				es_playsound server_var(wcs_userid) wcs/lightning.mp3 .7
-				es wcs_centertell server_var(wcs_userid) You've struck server_var(wcs_count_players_actually_affected) with chain lightning
+				es wcs_centertell server_var(wcs_userid) You've struck server_var(wcs_count_players_actually_affected) enemies with your chain lightning
 			}
 		}
 		else do
