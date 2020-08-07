@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.5B    //
+//Version 1.0.6B    //
 //////////////////////
 
 block spawn

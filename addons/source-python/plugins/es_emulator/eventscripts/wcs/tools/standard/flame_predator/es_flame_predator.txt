@@ -1,6 +1,6 @@
 //////////////////////
 //Standard Race Pack//
-//Version 1.0.5B    //
+//Version 1.0.6B    //
 //////////////////////
 
 block spawn
@@ -21,6 +21,7 @@ block spawn
 		es wcs_restrict event_var(userid) "glock;usp_silencer;p250;hkp2000;elite;fiveseven;deagle;revolver;tec9;taser;sawedoff;nova;xm1014;mag7;p90;mp9;mp7;bizon;mac10;ump45;m4a1;m4a1_silencer;galilar;ak47;aug;famas;g3sg1;scar20;awp;sg556;ssg08;m249;negev"
 	}
 	es_delayed .1 es_give event_var(userid) weapon_knife
+	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Weaponry - You can only use grenades and a knife
 	es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(userid)
 	es_xmath wcs_z1 + 15
 	es est_effect 10 #a 0 sprites/laser.vmt server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1) 80 70 2 5 15 0 255 255 255 255 255
@@ -54,9 +55,11 @@ block berserk
 	{
 		wcs_log [Race]: Flame Predator - [Block] Skill: 1 (START)
 	}
-	es wcs_setfx speed event_var(userid) = server_var(wcs_speed) 0
+	es wcs_setfx speed event_var(userid) + server_var(wcs_speed) 0
 	es wcs_setfx health event_var(userid) + server_var(wcs_addhealth) 0
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Berserk - Granted you additional speed and health
+	es_xmath wcs_speed * 100
+	es wcs_decimal wcs_speed server_var(wcs_speed)
+	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Berserk - Granted you server_var(wcs_addhealth) additional server_var(wcs_speed)% speed and health
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Flame Predator - [Block] Skill: 1 (END)
@@ -70,7 +73,10 @@ block cloak
 		wcs_log [Race]: Flame Predator - [Block] Skill: 2 (START)
 	}
 	es_delayed .5 wcs_color event_var(userid) 255 255 255 server_var(wcs_invis) 0
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Cloak of invisibility - Made you less visible
+ 	es_xmath wcs_invis / -2.55
+	es_xmath wcs_invis + 100
+    es wcs_decimal wcs_invis server_var(wcs_invis)
+    es_tell event_var(userid) #multi #green[WCS]#lightgreen Cloak of invisibility - Made you server_var(wcs_invis)% invisible
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Flame Predator - [Block] Skill: 2 (END)
@@ -84,8 +90,10 @@ block gravity
 	{
 		wcs_log [Race]: Flame Predator - [Block] Skill: 3 (START)
 	}
-	es_delayed .2 wcs_setfx gravity event_var(userid) = server_var(wcs_gravity) 0
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Levitation - Has reduced your gravity
+	es_delayed .2 wcs_setfx gravity event_var(userid) - server_var(wcs_gravity) 0
+	es_xmath wcs_gravity * 100
+	es wcs_decimal wcs_gravity server_var(wcs_gravity)
+	es_tell event_var(userid) #multi #green[WCS]#lightgreen Levitation - Reduced your gravity by server_var(wcs_gravity)%
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Flame Predator - [Block] Skill: 3 (END)
@@ -108,7 +116,7 @@ block claw
 				{
 					es wcs_drop event_var(userid) 1
 					es wcs_centertell event_var(userid) You've been forced to drop your primary weapon!
-					es wcs_centertell event_var(attacker) You've forced event_var(es_username) to drop his primary weapon!
+					es_delayed .1 wcs_centertell event_var(attacker) You've forced event_var(es_username) to drop his primary weapon!
 				}
 			}
 		}
@@ -198,7 +206,7 @@ block bomb
 					}
 					if (server_var(wcs_rand) == 3) do
 					{
-					es_playsound event_var(userid) weapons\hegrenade\explode3.wav .7
+						es_playsound event_var(userid) weapons\hegrenade\explode3.wav .7
 					}
 				}
 			}
