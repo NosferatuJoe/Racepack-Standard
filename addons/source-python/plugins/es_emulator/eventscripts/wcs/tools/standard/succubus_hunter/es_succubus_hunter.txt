@@ -143,7 +143,7 @@ block longjump
 	es wcs_setfx longjump event_var(userid) + server_var(wcs_multiplier) 0
 	es_xmath wcs_multiplier * 100
 	es wcs_decimal wcs_multiplier server_var(wcs_multiplier)
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump length by server_var(wcs_multiplier)
+	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump length by server_var(wcs_multiplier)%
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Skill: 3 (END)
