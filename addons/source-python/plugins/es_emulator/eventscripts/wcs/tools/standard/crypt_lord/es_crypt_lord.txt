@@ -233,17 +233,19 @@ block ultimate_final
 		wcs_log [Race]: Crypt Lord - [Block] Skill: 4 (EXECUTED START)
 	}
 	es playerget health wcs_tmp1 server_var(wcs_userid)
-	if (server_var(wcs_tmp1) >= 250) do
+	es_xmath wcs_tmp1 + 35
+	if (server_var(wcs_tmp1) >= 225) do
 	{
-		es wcs_setfx health server_var(wcs_userid) = 250 0
+		es wcs_setfx health server_var(wcs_userid) = 225 0
 		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Locust swarm - Your health has reached the cap
 	}
-	if (server_var(wcs_tmp1) < 250) do
+	if (server_var(wcs_tmp1) < 225) do
 	{
 		es wcs_setfx health server_var(wcs_userid) + 35 0
 		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Locust swarm - Granted you 35 extra health
 	}
 	es playerget armor wcs_tmp2 server_var(wcs_userid)
+	es_math wcs_tmp2 + server_var(wcs_armor)
 	if (server_var(wcs_tmp2) >= 250) do
 	{
 		es wcs_setfx armor server_var(wcs_userid) = 250 0
