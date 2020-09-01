@@ -157,7 +157,11 @@ block buff
 		wcs_log [Race]: Succubus Hunter - [Block] Skill: 4 (START)
 	}
 	es wcsgroup get succubuss_skull wcs_tmp4 server_var(wcs_userid)
-	if (server_var(wcs_tmp4) != 0) do
+	if (server_var(wcs_tmp4) == 0) do
+	{
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - You do not have enough skulls
+	}
+	if (server_var(wcs_tmp4) <= 1) do
 	{
 		es_xmath wcs_tmp4 - 1
 		es wcsgroup set succubuss_skull server_var(wcs_userid) server_var(wcs_tmp4)
@@ -180,21 +184,17 @@ block buff
 			es wcs_setfx health server_var(wcs_userid) + 25 0
 			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Granted you 25 extra health
 		}
-		es playerget speed wcs_tmp1 server_var(wcs_userid)
-		if (server_var(wcs_tmp1) >= 2) do
+		es playerget speed wcs_tmp2 server_var(wcs_userid)
+		if (server_var(wcs_tmp2) >= 2) do
 		{
 			es wcs_setfx speed server_var(wcs_userid) = 2 0
 			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Your speed is capped at 200%
 		}
-		if (server_var(wcs_tmp1) < 200) do
+		if (server_var(wcs_tmp2) < 200) do
 		{
 			es wcs_setfx speed server_var(wcs_userid) + .25 0
 			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Granted you 25% extra speed
 		}
-	}
-	if (server_var(wcs_tmp3) == 0) do
-	{
-		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - You do not have enough skulls
 	}
 	ifx true(wcs_race_debugging) do
 	{
