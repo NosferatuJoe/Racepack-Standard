@@ -38,18 +38,34 @@ block phoenix
 	{
 		wcs_log [Race]: Blood Mage - [Block] Skill: 1 (START)
 	}
-	es wcsgroup get has_used_phoenix wcs_tmp3 event_var(userid)
-	if (server_var(wcs_tmp3) == 0) do
+	ifx true(wcs_ffa_enabled) do
 	{
-		es wcsgroup set has_used_phoenix event_var(userid) 1
+		es wcsgroup set phoenix_ffa event_var(userid) 0
 		if (server_var(wcs_dice) <= server_var(wcs_chance)) do
 		{
-			if (event_var(es_userteam) = 2) then es_xset wcs_team #t
-			if (event_var(es_userteam) = 3) then es_xset wcs_team #ct
-			es wcsgroup get phoenix wcs_phoenix server_var(wcs_team)
-			es_xmath wcs_phoenix + 1
-			es wcsgroup set phoenix server_var(wcs_team) server_var(wcs_phoenix)
-			es_tell event_var(userid) #multi #green[WCS]#lightgreen Phoenix - The first from your team to die will be revived
+			es_xrand wcs_rand 0 2
+			ifx false(wcs_rand) do
+			{
+				es wcsgroup set phoenix_ffa event_var(userid) 1
+				es_tell event_var(userid) #multi #green[WCS]#lightgreen Phoenix - You'll be reborn if you die during this round!
+			}
+		}
+	}
+	ifx false(wcs_ffa_enabled) do
+	{
+		es wcsgroup get has_used_phoenix wcs_tmp3 event_var(userid)
+		if (server_var(wcs_tmp3) == 0) do
+		{
+			es wcsgroup set has_used_phoenix event_var(userid) 1
+			if (server_var(wcs_dice) <= server_var(wcs_chance)) do
+			{
+				if (event_var(es_userteam) = 2) then es_xset wcs_team #t
+				if (event_var(es_userteam) = 3) then es_xset wcs_team #ct
+				es wcsgroup get phoenix wcs_phoenix server_var(wcs_team)
+				es_xmath wcs_phoenix + 1
+				es wcsgroup set phoenix server_var(wcs_team) server_var(wcs_phoenix)
+				es_tell event_var(userid) #multi #green[WCS]#lightgreen Phoenix - The first from your team to die will be revived
+			}
 		}
 	}
 	ifx true(wcs_race_debugging) do
