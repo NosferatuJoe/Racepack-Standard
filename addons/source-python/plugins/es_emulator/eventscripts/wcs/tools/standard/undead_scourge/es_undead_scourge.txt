@@ -57,7 +57,8 @@ block vampire
 				{
 					es_xrand wcs_addhealth 12 20
 					es wcs_setfx health event_var(attacker) + server_var(wcs_addhealth) 0
-					es wcs_centertell event_var(attacker) Leeched server_var(wcs_addhealth) health!
+				    es wcs_getlanguage wcs_lng "player_skill1_leech" 0 "undead_scourge"
+				    es wcs_xcentertell event_var(attacker) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 					es playerget health wcs_tmp2 event_var(attacker)
 					if (server_var(wcs_tmp2) > 260) do
 					{
@@ -67,7 +68,8 @@ block vampire
 				if (server_var(wcs_tmp2) => 260) do
 				{
 					es wcs_setfx health event_var(attacker) = 260 0
-					es wcs_centertell event_var(attacker) You have reached the 260 health cap!
+				    es wcs_getlanguage wcs_lng "player_skill1_cap" 0 "undead_scourge"
+				    es wcs_xcentertell event_var(attacker) server_var(wcs_lng)
 				}
 			}
 		}
@@ -85,11 +87,11 @@ block unholy
 		wcs_log [Race]: Undead Scourge - [Block] Skill: 2 (START)
 	}
 	es wcs_setfx speed event_var(userid) = server_var(wcs_speed) 0
-	es_set wcs_speed_var server_var(wcs_speed)
-	es_xmath wcs_speed_var * 100
-	es_xmath wcs_speed_var - 100
-	es wcs_decimal wcs_speed_var server_var(wcs_speed_var)
-	es_tell event_var(userid) #multi #green[WCS]#lightgreen Unholy Aura - Increased your speed by server_var(wcs_speed_var)%
+	es_xmath wcs_speed * 100
+	es_xmath wcs_speed - 100
+	es wcs_decimal wcs_speed server_var(wcs_speed)
+    es wcs_getlanguage wcs_lng "player_skill2" 0 "undead_scourge"
+    es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_speed)
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Undead Scourge - [Block] Skill: 2 (END)
@@ -105,7 +107,8 @@ block levitation
 	es_delayed .2 wcs_setfx gravity event_var(userid) = server_var(wcs_gravity) 0
 	es_xmath wcs_gravity * 100
 	es wcs_decimal wcs_gravity server_var(wcs_gravity)
-	es_tell event_var(userid) #multi #green[WCS]#lightgreen Levitation - Reduced your gravity to server_var(wcs_gravity)%
+    es wcs_getlanguage wcs_lng "player_skill3" 0 "undead_scourge"
+    es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_gravity)
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Undead Scourge - [Block] Skill: 3 (END)
@@ -157,9 +160,10 @@ block bomb
 				{
 					//No matter how many targets are affected, this section will only be executed once.
 					//If you have a global counter you wish to retrieve then use this section, also good for general mesasges or commands you only want to happen on the wcs_userid / event_var(userid)
-					
-					es wcs_centertell event_var(userid) The Explosion damaged server_var(wcs_count_players_actually_affected) enemies for server_var(wcs_magnitude) damage
-					es_tell event_var(userid) #multi #green [WCS]: #lightgreen The explosion affected server_var(wcs_count_players_actually_affected) enemies
+				    es wcs_getlanguage wcs_lng "player_skill4_centertell" 0 "undead_scourge"
+				    es wcs_xcentertell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_count_players_actually_affected) value2 server_var(wcs_magnitude)
+				    es wcs_getlanguage wcs_lng "player_skill4_tell" 0 "undead_scourge"
+				    es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_count_players_actually_affected)
 					es_xrand wcs_rand 1 3
 					if (server_var(wcs_rand) == 1) do
 					{
@@ -177,16 +181,19 @@ block bomb
 			}
 			else do
 			{
-				es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - Failed, there are no living enemies!
+			    es wcs_getlanguage wcs_lng "check_skill4_failed_living" 0 "undead_scourge"
+			    es wcs_xtell event_var(userid) server_var(wcs_lng)
 			}
 			if (server_var(wcs_counter) = 0) do
 			{
-				es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - Failed, no nearby enemies!
+			    es wcs_getlanguage wcs_lng "check_skill4_failed_nearby" 0 "undead_scourge"
+			    es wcs_xtell event_var(userid) server_var(wcs_lng)
 			}
 		}
 		else do
 		{
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - Could not target an enemy team
+		    es wcs_getlanguage wcs_lng "check_skill4_failed_targeting" 0 "undead_scourge"
+		    es wcs_xtell event_var(userid) server_var(wcs_lng)
 		}
 	}
 	ifx true(wcs_race_debugging) do
@@ -225,18 +232,22 @@ block wcs_ulti_suicide_checks
 						es_xmath wcs_count_players_ultimate_immunity + 1
 						if (server_var(wcs_count_players_ultimate_immunity) != server_var(wcs_initial_players_struck)) do
 						{
-							es_tell server_var(wcs_targetid) #multi #green [WCS]: #lightgreen Ultimate immunity - You blocked an enemy's explosion
-							es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - server_var(wcs_count_players_ultimate_immunity) enemies were immune to your ultimate!
+							es wcs_getlanguage wcs_lng "check_skill4_failed_target_is_immune" 0 "undead_scourge"
+				    		es wcs_xtell server_var(wcs_targetid) server_var(wcs_lng)
+							es wcs_getlanguage wcs_lng "check_skill4_failed_some_are_immune" 0 "undead_scourge"
+				    		es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_count_players_ultimate_immunity)
 						}
 						if (server_var(wcs_count_players_ultimate_immunity) == server_var(wcs_initial_players_struck)) do
 						{
-							es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - Failed, all nearby enemy targets were immune!
+							es wcs_getlanguage wcs_lng "check_skill4_failed_all_are_immune" 0 "undead_scourge"
+				    		es wcs_xtell event_var(userid) server_var(wcs_lng)
 						}
 					}
 				}
 				else do
 				{
-					es_tell event_var(userid) #multi #green [WCS]: #lightgreen The Explosion - Failed, you can't hit that many targets at once!
+					es wcs_getlanguage wcs_lng "check_skill4_failed_too_many_targets" 0 "undead_scourge"
+		    		es wcs_xtell event_var(userid) server_var(wcs_lng)
 				}
 			}
 		}
@@ -253,7 +264,8 @@ block wcs_ulti_suicide_final
 	{
 		wcs_log [Race]: Undead Scourge - [Block] Skill: 4 (EXECUTED START)
 	}
-	es wcs_centertell server_var(wcs_targetid) You took server_var(wcs_magnitude) damage from an Explosion
+    es wcs_getlanguage wcs_lng "target_skill4_centertell" 0 "undead_scourge"
+    es wcs_xcentertell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_magnitude)
 	es_xrand wcs_rand 1 3
 	if (server_var(wcs_rand) == 1) do
 	{

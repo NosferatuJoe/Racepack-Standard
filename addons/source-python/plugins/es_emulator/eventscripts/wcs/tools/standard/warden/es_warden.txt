@@ -83,8 +83,10 @@ block knivesdamage
 	}
 	es_xrand wcs_dmg 8 19
 	es damage server_var(wcs_player) server_var(wcs_dmg) 1 event_var(attacker)
-	es wcs_centertell event_var(attacker) Fan of knives dealt server_var(wcs_dmg) damage to nearby enemies
-	es wcs_centertell server_var(wcs_player) Took server_var(wcs_dmg) damage from fan of knives
+	es wcs_getlanguage wcs_lng "player_skill1" 0 "warden"
+	es wcs_xcentertell event_var(attacker) server_var(wcs_lng) value1 server_var(wcs_dmg)
+	es wcs_getlanguage wcs_lng "target_skill1" 0 "warden"
+	es wcs_xcentertell server_var(wcs_player) server_var(wcs_lng) value1 server_var(wcs_dmg)
 	es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 event_var(attacker)
 	es_xmath wcs_z2 + 25
 	es_createvectorstring vector2 server_var(wcs_x2) server_var(wcs_y2) server_var(wcs_z2)
@@ -110,7 +112,8 @@ block immunity
 		if (event_var(es_userdead) = 0) do
 		{
 			es wcsgroup set ulti_immunity event_var(userid) 1
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Resistance - Renders you immune to enemy ultimates
+			es wcs_getlanguage wcs_lng "player_skill2" 0 "warden"
+			es wcs_xtell event_var(userid) server_var(wcs_lng)
 		}
 	}
 	ifx true(wcs_race_debugging) do
@@ -135,8 +138,10 @@ block damage
 				es_delayed 2 damage event_var(userid) 4 1 event_var(attacker)
 				es_delayed 3 damage event_var(userid) 4 1 event_var(attacker)
 				es_delayed 4 damage event_var(userid) 4 1 event_var(attacker)
-				es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Shadow strike - You poisoned your target for 4 seconds
-				es_tell event_var(userid) #multi #green [WCS]: #lightgreen Shadow strike - You've been poisoned for 4 seconds
+				es wcs_getlanguage wcs_lng "player_skill3" 0 "warden"
+				es wcs_xtell event_var(attacker) server_var(wcs_lng)
+				es wcs_getlanguage wcs_lng "target_skill3" 0 "warden"
+				es wcs_xtell event_var(userid) server_var(wcs_lng)
 				es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(attacker)
 				es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 event_var(userid)
 				es_xmath wcs_z1 + 20
@@ -166,7 +171,8 @@ block health
 	if (server_var(wcs_tmp1) >= 175) do
 	{
 		es wcs_cancelulti server_var(wcs_userid)
-		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Can only be casted when below 175 health
+		es wcs_getlanguage wcs_lng "player_skill4_max" 0 "warden"
+		es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 	}
 	if (server_var(wcs_tmp1) < 175) do
 	{
@@ -174,7 +180,8 @@ block health
 		{
 			es_xrand wcs_addhealth 2 8
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -188,7 +195,8 @@ block health
 		{
 			es_xrand wcs_addhealth 5 10
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -202,7 +210,8 @@ block health
 		{
 			es_xrand wcs_addhealth 6 12
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -216,7 +225,8 @@ block health
 		{
 			es_xrand wcs_addhealth 8 14
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -230,7 +240,8 @@ block health
 		{
 			es_xrand wcs_addhealth 9 19
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -244,7 +255,8 @@ block health
 		{
 			es_xrand wcs_addhealth 10 20
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -258,7 +270,8 @@ block health
 		{
 			es_xrand wcs_addhealth 12 22
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -272,7 +285,8 @@ block health
 		{
 			es_xrand wcs_addhealth 14 24
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -286,7 +300,8 @@ block health
 		{
 			es_xrand wcs_addhealth 15 30
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -300,7 +315,8 @@ block health
 		{
 			es_xrand wcs_addhealth 20 40
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -314,7 +330,8 @@ block health
 		{
 			es_xrand wcs_addhealth 25 50
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -328,7 +345,8 @@ block health
 		{
 			es_xrand wcs_addhealth 30 60
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -342,7 +360,8 @@ block health
 		{
 			es_xrand wcs_addhealth 35 70
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -356,7 +375,8 @@ block health
 		{
 			es_xrand wcs_addhealth 40 80
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -370,7 +390,8 @@ block health
 		{
 			es_xrand wcs_addhealth 45 90
 			es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+			es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 			es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 			es_xmath wcs_z1 + 5
 			es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -388,7 +409,8 @@ block health
 			if (server_var(wcs_addhealth) >= 100) do
 			{
 				es wcs_setfx health server_var(wcs_userid) = 100 0
-				es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored your health back to 100
+				es wcs_getlanguage wcs_lng "player_skill4_health100" 0 "warden"
+				es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 				es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 				es_xmath wcs_z1 + 5
 				es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)
@@ -400,7 +422,8 @@ block health
 			if (server_var(wcs_addhealth) <= 100) do
 			{
 				es wcs_setfx health server_var(wcs_userid) + server_var(wcs_addhealth) 0
-				es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Restoration - Restored server_var(wcs_addhealth) of your health
+				es wcs_getlanguage wcs_lng "player_skill4" 0 "warden"
+				es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_addhealth)
 				es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 server_var(wcs_userid)
 				es_xmath wcs_z1 + 5
 				es_createvectorstring vector1 server_var(wcs_x1) server_var(wcs_y1) server_var(wcs_z1)

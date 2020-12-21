@@ -10,7 +10,8 @@ block spawn
 		wcs_log [Race]: Succubus Hunter - [Block] Spawn (START)
 	}
 	es wcsgroup get succubuss_skull wcs_tmp3 event_var(userid)
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You have collected server_var(wcs_tmp3) / 5 skulls
+	es wcs_getlanguage wcs_lng "player_spawn" 0 "succubuss_hunter"
+	es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_tmp3)
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Spawn (END)
@@ -31,7 +32,8 @@ block death
 		{
 			es_xmath wcs_tmp3 - 1
 			es wcsgroup set succubuss_skull event_var(userid) server_var(wcs_tmp3)
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Head hunter - You lost a skull upon death! You have server_var(wcs_tmp3) skull left!
+			es wcs_getlanguage wcs_lng "player_skill1" 0 "succubuss_hunter"
+			es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_tmp3)
 		}
 	}
 	ifx true(wcs_race_debugging) do
@@ -54,7 +56,8 @@ block damage
 			{
 				es_xrand wcs_dmg 9 15
 				es damage event_var(userid) server_var(wcs_dmg) 1 event_var(attacker)
-				es wcs_centertell event_var(attacker) Head hunter dealt + server_var(wcs_dmg) damage
+				es wcs_getlanguage wcs_lng "player_skill1_centertell" 0 "succubuss_hunter"
+				es wcs_xcentertell event_var(attacker) server_var(wcs_lng) value1 server_var(wcs_dmg)
 				es_getplayerlocation wcs_x1 wcs_y1 wcs_z1 event_var(attacker)
 				es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 event_var(userid)
 				es_xmath wcs_z1 + 20
@@ -72,7 +75,8 @@ block damage
 					es wcsgroup get succubuss_skull wcs_tmp3 event_var(attacker)
 					es_xmath wcs_tmp3 + 1
 					es wcsgroup set succubuss_skull event_var(attacker) server_var(wcs_tmp3)
-					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Head hunter - Obtained a skull, you have server_var(wcs_tmp3) / 5 skulls
+					es wcs_getlanguage wcs_lng "player_skill1_tell" 0 "succubuss_hunter"
+					es wcs_xtell event_var(attacker) server_var(wcs_lng) value1 server_var(wcs_tmp3)
 				}
 			}
 		}
@@ -99,34 +103,33 @@ block health
 		es wcsgroup get succubuss_skull wcs_tmp3 event_var(userid)
 		if (server_var(wcs_tmp3) == 1) do
 		{
-			es wcs_setfx health event_var(userid) + 10 0
-			es wcs_setfx cash event_var(userid) + 150 0
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Incantation - Gave you 150 gold and 10 health
+			es_xset wcs_money 150
+			es_xset wcs_addhealth 10
 		}
 		if (server_var(wcs_tmp3) == 2) do
 		{
-			es wcs_setfx health event_var(userid) + 20 0
-			es wcs_setfx cash event_var(userid) + 300 0
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Incantation - Gave you 300 gold and 20 health
+			es_xset wcs_money 300
+			es_xset wcs_addhealth 20
 		}
 		if (server_var(wcs_tmp3) == 3) do
 		{
-			es wcs_setfx health event_var(userid) + 30 0
-			es wcs_setfx cash event_var(userid) + 450 0
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Incantation - Gave you 450 gold and 30 health
+			es_xset wcs_money 450
+			es_xset wcs_addhealth 30
 		}
 		if (server_var(wcs_tmp3) == 4) do
 		{
-			es wcs_setfx health event_var(userid) + 40 0
-			es wcs_setfx cash event_var(userid) + 600 0
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Incantation - Gave you 600 gold and 40 health
+			es_xset wcs_money 600
+			es_xset wcs_addhealth 40
 		}
 		if (server_var(wcs_tmp3) == 5) do
 		{
-			es wcs_setfx health event_var(userid) + 50 0
-			es wcs_setfx cash event_var(userid) + 750 0
-			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Incantation - Gave you 750 gold and 50 health
+			es_xset wcs_money 750
+			es_xset wcs_addhealth 50
 		}
+		es wcs_setfx health event_var(userid) + server_var(wcs_addhealth) 0
+		es wcs_setfx cash event_var(userid) + server_var(wcs_money) 0
+		es wcs_getlanguage wcs_lng "player_skill2" 0 "succubuss_hunter"
+		es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_money) value2 server_var(wcs_addhealth)
 	}
 	ifx true(wcs_race_debugging) do
 	{
@@ -143,7 +146,8 @@ block longjump
 	es wcs_setfx longjump event_var(userid) + server_var(wcs_multiplier) 0
 	es_xmath wcs_multiplier * 100
 	es wcs_decimal wcs_multiplier server_var(wcs_multiplier)
-	es_tell event_var(userid) #multi #green [WCS]: #lightgreen Tackle - Increased your jump length by server_var(wcs_multiplier)%
+	es wcs_getlanguage wcs_lng "player_skill3" 0 "succubuss_hunter"
+	es wcs_xtell event_var(userid) server_var(wcs_lng) value1 server_var(wcs_multiplier)
 	ifx true(wcs_race_debugging) do
 	{
 		wcs_log [Race]: Succubus Hunter - [Block] Skill: 3 (END)
@@ -159,13 +163,15 @@ block buff
 	es wcsgroup get succubuss_skull wcs_tmp4 server_var(wcs_userid)
 	if (server_var(wcs_tmp4) == 0) do
 	{
-		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - You do not have enough skulls
+		es wcs_getlanguage wcs_lng "check_skill4_failed_no_skulls" 0 "succubuss_hunter"
+		es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 	}
 	if (server_var(wcs_tmp4) <= 1) do
 	{
 		es_xmath wcs_tmp4 - 1
 		es wcsgroup set succubuss_skull server_var(wcs_userid) server_var(wcs_tmp4)
-		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Cost you 1 skull. You have server_var(wcs_tmp4) / 5 skulls left.
+		es wcs_getlanguage wcs_lng "check_skill4_cost" 0 "succubuss_hunter"
+		es wcs_xtell server_var(wcs_userid) server_var(wcs_lng) value1 server_var(wcs_tmp4)
 		es_playsound server_var(wcs_userid) wcs/shamanisticrage.mp3 .8
 		es wcs_setfx gravity server_var(wcs_userid) = .75 0
 		es_getplayerlocation wcs_x2 wcs_y2 wcs_z2 server_var(wcs_userid)
@@ -177,23 +183,27 @@ block buff
 		if (server_var(wcs_tmp1) >= 200) do
 		{
 			es wcs_setfx health server_var(wcs_userid) = 200 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Your health is capped at 200
+			es wcs_getlanguage wcs_lng "check_skill4_health_max" 0 "succubuss_hunter"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 		}
 		if (server_var(wcs_tmp1) < 200) do
 		{
 			es wcs_setfx health server_var(wcs_userid) + 25 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Granted you 25 extra health
+			es wcs_getlanguage wcs_lng "check_skill4_health" 0 "succubuss_hunter"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 		}
 		es playerget speed wcs_tmp2 server_var(wcs_userid)
 		if (server_var(wcs_tmp2) >= 2) do
 		{
 			es wcs_setfx speed server_var(wcs_userid) = 2 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Your speed is capped at 200%
+			es wcs_getlanguage wcs_lng "check_skill4_speed_max" 0 "succubuss_hunter"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 		}
 		if (server_var(wcs_tmp2) < 200) do
 		{
 			es wcs_setfx speed server_var(wcs_userid) + .25 0
-			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Transformation - Granted you 25% extra speed
+			es wcs_getlanguage wcs_lng "check_skill4_speed" 0 "succubuss_hunter"
+			es wcs_xtell server_var(wcs_userid) server_var(wcs_lng)
 		}
 	}
 	ifx true(wcs_race_debugging) do
