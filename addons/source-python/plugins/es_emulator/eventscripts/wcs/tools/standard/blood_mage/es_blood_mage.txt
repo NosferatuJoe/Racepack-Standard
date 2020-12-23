@@ -1,3 +1,8 @@
+//////////////////////
+//Standard Race Pack//
+//Version 1.0.9B    //
+//////////////////////
+
 block spawn
 {
 	ifx true(wcs_race_debugging) do
